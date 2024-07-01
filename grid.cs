@@ -12,14 +12,14 @@ namespace Practice
 
         const char empty = ' ';
         private int[,] winPositions = {
-            {1, 2, 3},
-            {4, 5, 6}, 
-            {7, 8, 9},
+            {0, 1, 2},
+            {3, 4, 5}, 
+            {6, 7, 8},
+            {0, 3, 6},
             {1, 4, 7},
             {2, 5, 8},
-            {3, 6, 9},
-            {1, 5, 9},
-            {3, 5, 7},
+            {0, 4, 8},
+            {2, 4, 6},
         };
 
 
@@ -66,15 +66,12 @@ namespace Practice
 
         private bool canMakeMove(int[] pos)
         {         
-            if (!(pos[0] <= this.grid.GetLength(1) && pos[1] <= this.grid.GetLength(0) && pos[0] >= 1 && pos[1] >= 1))
+            if (!(pos[0] <= this.grid.GetLength(1) && pos[1] <= this.grid.GetLength(0) && pos[0] >= 1 && pos[1] >= 1) || this.grid[pos[0] - 1, pos[1] - 1] != ' ')
             {
                 return false;
             }
 
-            else if (this.grid[pos[0] - 1, pos[1] - 1] == ' ')
-                return true;            
-
-            return false;
+            return true;
         }
 
         public bool isWhoseWin ()
@@ -86,25 +83,27 @@ namespace Practice
                 elements.Add(element);
             }
 
-            for (byte i = 0; i < this.winPositions.GetLength(0); i++)
+            for (int i = 0; i < this.winPositions.GetLength(0); i++)
             {
-                char element = elements.ElementAt(winPositions[i, 0] - 1);
-                Console.WriteLine(element);
+                char element = elements[winPositions[i, 0]];
+                bool winState = true;
 
-                if (element != empty)
-                    for (byte j = 0; j < this.winPositions.GetLength(1); j++)
+                if (element == empty)
+                    continue;
+
+                for (int j = 0; j < this.winPositions.GetLength(1); j++)
+                {
+                    char currentElement = elements[winPositions[i, j]];
+
+                    if (element != currentElement)
                     {
-                        char currentElement = elements.ElementAt(winPositions[i, j] - 1);
+                        winState = false;
+                        break;
+                    }                                       
+                }
 
-                        if (currentElement != element)
-                        {
-                            return false;
-                        }
-                    }
-                else
-                    return false;
-
-                return true;
+                if (winState)
+                    return true;
             }
 
             return false;

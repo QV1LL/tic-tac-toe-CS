@@ -14,8 +14,6 @@ namespace Practice
                 grid.makeMove(position, 'X');
                 grid.printGrid();
             }
-
-            Console.Read();
         }
     }
 }
