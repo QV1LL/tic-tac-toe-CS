@@ -10,7 +10,10 @@ namespace Practice
     {
         public char[,] grid = new char[3, 3];
 
-        const char empty = ' ';
+        private int turnCount;
+        public int turn = 1;
+
+        private const char empty = ' ';
         private int[,] winPositions = {
             {0, 1, 2},
             {3, 4, 5}, 
@@ -30,6 +33,8 @@ namespace Practice
 
         private void setupGrid()
         {
+            turnCount = this.grid.GetLength(0) * this.grid.GetLength(1);
+
             for (byte i = 0; i < this.grid.GetLength(0); i++)
             {
                 for (byte j = 0; j < this.grid.GetLength(1); j++)
@@ -59,7 +64,10 @@ namespace Practice
         public void makeMove(int[] pos, char figure)
         {
             if (canMakeMove(pos))
+            {
                 this.grid[pos[0] - 1, pos[1] - 1] = figure;
+                this.turn++;
+            }                
             else
                 Console.WriteLine("This cell is already occupied or position is out of bounds!");
         }
@@ -74,7 +82,7 @@ namespace Practice
             return true;
         }
 
-        public bool isWhoseWin ()
+        public char getWinnerSymbol ()
         {         
             List<char> elements = new List<char>();
 
@@ -103,10 +111,17 @@ namespace Practice
                 }
 
                 if (winState)
-                    return true;
+                    return element;
             }
 
-            return false;
+            return empty;
         }  
+
+        public bool isLeftMoves ()
+        {
+            return this.turn <= this.turnCount;
+        }
+
+        public char getEmpty () { return empty; }
     }
 }

@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Diagnostics;
 
 namespace Practice
 {
@@ -6,14 +7,44 @@ namespace Practice
         static void Main(string[] args)
         {
             Grid grid = new Grid();
-            Player player1 = new Player('0');
-            Player player2 = new Player('X');
 
-            while (!grid.isWhoseWin())
+            Player player = new Player('X');
+            Player enemy = new Player('0');
+
+            char playerSymbol = player.getSymbol();
+            char enemySymbol = enemy.getSymbol();
+
+            while (grid.getWinnerSymbol() == grid.getEmpty() && grid.isLeftMoves())
             {                
-                grid.makeMove(player1.getPosition(), player1.getSymbol());
-                grid.printGrid();
+                if (grid.turn % 2 == 0)
+                {
+                    grid.makeMove(player.getPosition(), playerSymbol);
+                    RunCommand("cls");
+                    grid.printGrid();
+                } else
+                {
+                    grid.makeMove(enemy.getPosition(), enemySymbol);
+                    RunCommand("cls");
+                    grid.printGrid();
+                }
             }
+
+            char winner = grid.getWinnerSymbol();
+
+            
+            if (winner == playerSymbol)
+            {
+                Console.WriteLine("YOU WON!");
+            }
+            else if (winner == enemySymbol)
+            {
+                Console.WriteLine("YOU LOSE!");
+            } else
+            {
+                Console.WriteLine("DRAW!");
+            }
+             
+            Console.ReadKey();            
         }
     }
 }
