@@ -18,13 +18,11 @@ namespace Practice
             {                
                 if (grid.turn % 2 == 0)
                 {
-                    grid.makeMove(player.getPosition(), playerSymbol);
-                    RunCommand("cls");
+                    grid.makeMove(player.getPosition(), playerSymbol);                
                     grid.printGrid();
                 } else
                 {
-                    grid.makeMove(enemy.getPosition(), enemySymbol);
-                    RunCommand("cls");
+                    grid.makeMove(enemy.getPosition(), enemySymbol);                    
                     grid.printGrid();
                 }
             }
