@@ -20,7 +20,22 @@ namespace Practice
 
         public int[] getPosition()
         {
-            int[] position = { Convert.ToInt32(Console.ReadLine()), Convert.ToInt32(Console.ReadLine()) };
+            int[] position = new int[2];
+
+            while (true)
+            {
+                try
+                {
+                    position[0] = Convert.ToInt32(Console.ReadLine());
+                    position[1] = Convert.ToInt32(Console.ReadLine());
+
+                    break;
+                }
+                catch (FormatException exception)
+                {
+                    Console.WriteLine("Incorrect format");
+                }
+            }
 
             return position;
         }
