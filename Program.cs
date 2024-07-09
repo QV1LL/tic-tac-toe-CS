@@ -4,25 +4,26 @@ using System.Diagnostics;
 namespace Practice
 {
     class Program { 
+
         static void Main(string[] args)
         {
-            Grid grid = new Grid();
+            Grid grid = new Grid(); 
 
             Player player = new Player('X');
-            Player enemy = new Player('0');
+            Enemy enemy = new Enemy('0');
 
             char playerSymbol = player.getSymbol();
             char enemySymbol = enemy.getSymbol();
 
             while (grid.getWinnerSymbol() == grid.getEmpty() && grid.isLeftMoves())
             {                
-                if (grid.turn % 2 == 0)
+                if (grid.getTurn() % 2 == 0)
                 {
                     grid.makeMove(player.getPosition(), playerSymbol);                
                     grid.printGrid();
                 } else
                 {
-                    grid.makeMove(enemy.getPosition(), enemySymbol);                    
+                    grid.makeMove(enemy.getEnemyPosition(grid, playerSymbol, enemySymbol), enemySymbol);                    
                     grid.printGrid();
                 }
             }

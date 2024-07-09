@@ -11,7 +11,7 @@ namespace Practice
         public char[,] grid = new char[3, 3];
 
         private int turnCount;
-        public int turn = 1;
+        private int turn = 1;
 
         private const char empty = ' ';
         private int[,] winPositions = {
@@ -61,11 +61,11 @@ namespace Practice
             }
         }
 
-        public void makeMove(int[] pos, char figure)
+        public void makeMove(int[] pos, char symbol)
         {
             if (canMakeMove(pos))
             {
-                this.grid[pos[0] - 1, pos[1] - 1] = figure;
+                this.grid[pos[0] - 1, pos[1] - 1] = symbol;
                 this.turn++;
             }                
             else
@@ -123,5 +123,7 @@ namespace Practice
         }
 
         public char getEmpty () { return empty; }
+
+        public int getTurn() { return this.turn; }
     }
 }
