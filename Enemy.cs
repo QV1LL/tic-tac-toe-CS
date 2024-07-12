@@ -40,7 +40,7 @@ namespace Practice
                 }
 
                 return bestMove;
-            }
+            }                      
 
             int[] getRandomMove()
             {
@@ -51,28 +51,30 @@ namespace Practice
                 {
                     for (int j = 0; j < currentGrid.grid.GetLength(1); j++)
                     {
-                        if (currentGrid.grid[i, j] != currentGrid.getEmpty())
-                        {
-                            int[] currentMove = { i + 1, j + 1 };
+                        int[] currentMove = { i + 1, j + 1 };
 
-                            if (currentGrid.grid[i, j] == currentGrid.getEmpty())
-                                moves.Append(currentMove);
-                        }
+                        if (currentGrid.grid[i, j] == currentGrid.getEmpty())
+                            moves.Add(currentMove);
                     }
                 }
 
-                return moves[random.Next(0, moves.Count - 1)];
-            }
-
+                int movesCount = (moves.Count <= 0) ? 0 : moves.Count - 1;
+               
+                return moves[random.Next(0, movesCount)];
+            }             
+             
             int[] playerBestMove = getBestMove(playerSymbol);
-            int[] enemyBestMove = getBestMove(enemySymbol);
+            int[] enemyBestMove = getBestMove(enemySymbol);                          
 
-            if (playerBestMove != null)
+            return getRandomMove();
+            
+             if (playerBestMove != null)
                 return playerBestMove;
             else if (enemyBestMove != null)
                 return enemyBestMove;
             else
                 return getRandomMove();
+             
         }
     }
 }

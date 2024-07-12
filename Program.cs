@@ -23,7 +23,7 @@ namespace Practice
                     grid.printGrid();
                 } else
                 {
-                    grid.makeMove(enemy.getEnemyPosition(grid, playerSymbol, enemySymbol), enemySymbol);                    
+                    grid.makeMove(enemy.getEnemyPosition(grid, enemySymbol, playerSymbol), enemySymbol);                    
                     grid.printGrid();
                 }
             }
