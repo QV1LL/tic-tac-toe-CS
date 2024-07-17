@@ -12,12 +12,12 @@ namespace Practice
             Player player = new Player('X');
             Enemy enemy = new Enemy('0');
 
-            char playerSymbol = player.getSymbol();
-            char enemySymbol = enemy.getSymbol();
+            char playerSymbol = player.Symbol;
+            char enemySymbol = enemy.Symbol;
 
             while (grid.getWinnerSymbol() == grid.getEmpty() && grid.isLeftMoves())
             {                
-                if (grid.getTurn() % 2 == 0)
+                if (grid.getTurn() % 2 == 1)
                 {
                     grid.makeMove(player.getPosition(), playerSymbol);                
                     grid.printGrid();

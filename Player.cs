@@ -8,15 +8,13 @@ namespace Practice
 {
     class Player
     {
-        private char symbol;
+        public char Symbol { get; private set; }
 
 
         public Player(char symbol)
         {
-            this.symbol = symbol;
+            this.Symbol = symbol;
         }
-
-        public char getSymbol() { return symbol; }
 
         public int[] getPosition()
         {
