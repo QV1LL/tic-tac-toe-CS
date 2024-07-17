@@ -1,8 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Practice
 {
@@ -14,7 +11,7 @@ namespace Practice
         private int turn = 1;
 
         private const char empty = ' ';
-        private int[,] winPositions = {
+        private static int[,] winPositions = {
             {0, 1, 2},
             {3, 4, 5}, 
             {6, 7, 8},
@@ -82,16 +79,16 @@ namespace Practice
             return true;
         }
 
-        public char getWinnerSymbol ()
+        public static char getWinnerSymbol(char[,] grid)
         {         
             List<char> elements = new List<char>();
 
-            foreach (char element in this.grid)
+            foreach (char element in grid)
             {
                 elements.Add(element);
             }
 
-            for (int i = 0; i < this.winPositions.GetLength(0); i++)
+            for (int i = 0; i < winPositions.GetLength(0); i++)
             {
                 char element = elements[winPositions[i, 0]];
                 bool winState = true;
@@ -99,7 +96,7 @@ namespace Practice
                 if (element == empty)
                     continue;
 
-                for (int j = 0; j < this.winPositions.GetLength(1); j++)
+                for (int j = 0; j < winPositions.GetLength(1); j++)
                 {
                     char currentElement = elements[winPositions[i, j]];
 

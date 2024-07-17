@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Diagnostics;
 
 namespace Practice
 {
@@ -15,7 +14,7 @@ namespace Practice
             char playerSymbol = player.Symbol;
             char enemySymbol = enemy.Symbol;
 
-            while (grid.getWinnerSymbol() == grid.getEmpty() && grid.isLeftMoves())
+            while (Grid.getWinnerSymbol(grid.grid) == grid.getEmpty() && grid.isLeftMoves())
             {                
                 if (grid.getTurn() % 2 == 1)
                 {
@@ -23,12 +22,12 @@ namespace Practice
                     grid.printGrid();
                 } else
                 {
-                    grid.makeMove(enemy.getEnemyPosition(grid, enemySymbol, playerSymbol), enemySymbol);                    
+                    grid.makeMove(enemy.getEnemyPosition(grid.grid, enemySymbol, playerSymbol), enemySymbol);                    
                     grid.printGrid();
                 }
             }
 
-            char winner = grid.getWinnerSymbol();
+            char winner = Grid.getWinnerSymbol(grid.grid);
 
             
             if (winner == playerSymbol)

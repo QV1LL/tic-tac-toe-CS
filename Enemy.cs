@@ -1,8 +1,5 @@
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Practice
 {
@@ -13,28 +10,30 @@ namespace Practice
 
         }
 
-        public int[] getEnemyPosition(Grid currentGrid, char enemySymbol, char playerSymbol)
+        public int[] getEnemyPosition(char[,] testGrid, char enemySymbol, char playerSymbol)
         {
             int[] getBestMove(char symbol)
             {
-                Grid testGrid = currentGrid;
                 int[] bestMove = new int[2] { -1, -1 };
 
-                for (int i = 0; i < testGrid.grid.GetLength(0); i++)
+                for (int i = 0; i < testGrid.GetLength(0); i++)
                 {
 
-                    for (int j = 0; j < testGrid.grid.GetLength(1); j++)
+                    for (int j = 0; j < testGrid.GetLength(1); j++)
                     {
-                        int[] currentMove = { i + 1, j + 1 };
-
-                        testGrid.makeMove(currentMove, symbol);
-
-                        if (testGrid.getWinnerSymbol() == symbol)
+                        if (testGrid[i, j] == ' ')
                         {
-                            bestMove = currentMove;
-                        }
+                            int[] currentMove = new int[2] { i + 1, j + 1 };
 
-                        testGrid.grid[i, j] = testGrid.getEmpty();
+                            testGrid[i, j] = symbol;
+
+                            if (Grid.getWinnerSymbol(testGrid) == symbol)
+                                bestMove = currentMove;
+                            
+                            Console.WriteLine(bestMove[0]);
+
+                            testGrid[i, j] = ' ';
+                        }
                     }
                 }
 
@@ -46,11 +45,11 @@ namespace Practice
                 Random random = new Random();
                 List<int[]> moves = new List<int[]>();
 
-                for (int i = 0; i < currentGrid.grid.GetLength(0); i++)
+                for (int i = 0; i < testGrid.GetLength(0); i++)
                 {
-                    for (int j = 0; j < currentGrid.grid.GetLength(1); j++)
+                    for (int j = 0; j < testGrid.GetLength(1); j++)
                     {
-                        if (currentGrid.grid[i, j] == currentGrid.getEmpty())
+                        if (testGrid[i, j] == ' ')
                         {
                             int[] currentMove = { i + 1, j + 1 };
 
@@ -62,7 +61,17 @@ namespace Practice
                 return moves[random.Next(0, moves.Count - 1)];
             }
 
-            return getRandomMove();
+            int[] emptyMove = new int[2] { -1, -1 };
+
+            int[] playerBestMove = getBestMove(playerSymbol);
+            int[] enemyBestMove = getBestMove(enemySymbol);            
+
+            if (playerBestMove != emptyMove)                          
+                return playerBestMove;            
+            else if (enemyBestMove != emptyMove)          
+                return enemyBestMove;            
+            else
+                return getRandomMove();
         }
     }
 }
