@@ -44,5 +44,47 @@ namespace Practice
              
             Console.ReadKey();            
         }
+
+        public static bool ArraysEquals(int[] array1, int[] array2)
+        {
+            if (array1.Length != array2.Length)
+                return false;
+
+            for (int i = 0; i < array1.Length; i++)
+            {
+                if (array1[i] != array2[i]) 
+                    return false;
+            }
+
+            return true;
+        }
+
+        public static bool ArraysEquals(char[] array1, char[] array2)
+        {
+            if (array1.Length != array2.Length)
+                return false;
+
+            for (int i = 0; i < array1.Length; i++)
+            {
+                if (array1[i] != array2[i])
+                    return false;
+            }
+
+            return true;
+        }
+
+        public static bool ArraysEquals(float[] array1, float[] array2)
+        {
+            if (array1.Length != array2.Length)
+                return false;
+
+            for (int i = 0; i < array1.Length; i++)
+            {
+                if (array1[i] != array2[i])
+                    return false;
+            }
+
+            return true;
+        }
     }
 }

@@ -5,7 +5,7 @@ namespace Practice
 {
     class Grid
     {
-        public char[,] grid = new char[3, 3];
+        public char[,] grid { get; private set; }
 
         private int turnCount;
         private int turn = 1;
@@ -30,6 +30,8 @@ namespace Practice
 
         private void setupGrid()
         {
+            this.grid = new char[3, 3];
+
             turnCount = this.grid.GetLength(0) * this.grid.GetLength(1);
 
             for (byte i = 0; i < this.grid.GetLength(0); i++)

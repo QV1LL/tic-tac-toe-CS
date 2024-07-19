@@ -28,9 +28,7 @@ namespace Practice
                             testGrid[i, j] = symbol;
 
                             if (Grid.getWinnerSymbol(testGrid) == symbol)
-                                bestMove = currentMove;
-                            
-                            Console.WriteLine(bestMove[0]);
+                                bestMove = currentMove;                            
 
                             testGrid[i, j] = ' ';
                         }
@@ -66,9 +64,9 @@ namespace Practice
             int[] playerBestMove = getBestMove(playerSymbol);
             int[] enemyBestMove = getBestMove(enemySymbol);            
 
-            if (playerBestMove != emptyMove)                          
+            if (!Program.ArraysEquals(playerBestMove, emptyMove))                          
                 return playerBestMove;            
-            else if (enemyBestMove != emptyMove)          
+            else if (!Program.ArraysEquals(enemyBestMove, emptyMove))          
                 return enemyBestMove;            
             else
                 return getRandomMove();
