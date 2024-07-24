@@ -12,7 +12,7 @@ namespace Practice
             this.Symbol = symbol;
         }
 
-        public int[] getPosition()
+        public virtual int[] getPosition()
         {
             int[] position = new int[2];
 

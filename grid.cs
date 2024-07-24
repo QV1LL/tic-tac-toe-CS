@@ -10,7 +10,7 @@ namespace Practice
         private int turnCount;
         private int turn = 1;
 
-        private const char empty = ' ';
+        public static char empty = ' '; 
         private static int[,] winPositions = {
             {0, 1, 2},
             {3, 4, 5}, 
@@ -45,6 +45,8 @@ namespace Practice
 
         public void printGrid()
         {
+            Console.WriteLine();
+
             for (byte i = 0; i < this.grid.GetLength(0); i++)
             {
                 for (byte j = 0; j < this.grid.GetLength(1); j++)
@@ -58,6 +60,8 @@ namespace Practice
                 if (i < this.grid.GetLength(0) - 1)
                     Console.WriteLine("---------");
             }
+            
+            Console.WriteLine();
         }
 
         public void makeMove(int[] pos, char symbol)
@@ -95,7 +99,7 @@ namespace Practice
                 char element = elements[winPositions[i, 0]];
                 bool winState = true;
 
-                if (element == empty)
+                if (element == Grid.empty)
                     continue;
 
                 for (int j = 0; j < winPositions.GetLength(1); j++)
@@ -113,15 +117,13 @@ namespace Practice
                     return element;
             }
 
-            return empty;
+            return Grid.empty;
         }  
 
         public bool isLeftMoves ()
         {
             return this.turn <= this.turnCount;
         }
-
-        public char getEmpty () { return empty; }
 
         public int getTurn() { return this.turn; }
     }
