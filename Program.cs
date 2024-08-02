@@ -8,26 +8,26 @@ namespace Practice
         {
             Grid grid = new Grid(); 
 
-            Player player = new Player('X');
+            HumanPlayer player = new HumanPlayer('X');
             Enemy enemy = new Enemy('0');
 
             char playerSymbol = player.Symbol;
             char enemySymbol = enemy.Symbol;
 
-            while (Grid.getWinnerSymbol(grid.grid) == Grid.empty && grid.isLeftMoves())
+            while (Grid.GetWinnerSymbol(grid.grid) == Grid.empty && grid.IsLeftMoves())
             {                
-                if (grid.getTurn() % 2 == 1)
+                if (grid.Turn % 2 == 1)
                 {
-                    grid.makeMove(player.getPosition(), playerSymbol);                
-                    grid.printGrid();
+                    grid.MakeMove(player.GetPosition(), playerSymbol);                
+                    grid.PrintGrid();
                 } else
                 {
-                    grid.makeMove(enemy.getEnemyPosition(grid, enemySymbol, playerSymbol), enemySymbol);                    
-                    grid.printGrid();
+                    grid.MakeMove(enemy.GetPosition(grid, enemySymbol, playerSymbol), enemySymbol);                    
+                    grid.PrintGrid();
                 }
             }
 
-            char winner = Grid.getWinnerSymbol(grid.grid);
+            char winner = Grid.GetWinnerSymbol(grid.grid);
 
             
             if (winner == playerSymbol)

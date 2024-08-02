@@ -3,12 +3,12 @@ using System.Collections.Generic;
 
 namespace Practice
 {
-    class Grid
+    public class Grid
     {
         public char[,] grid { get; private set; }
 
         private int turnCount;
-        private int turn = 1;
+        public int Turn {  get; private set; }
 
         public static char empty = ' '; 
         private static int[,] winPositions = {
@@ -31,7 +31,7 @@ namespace Practice
         private void setupGrid()
         {
             this.grid = new char[3, 3];
-
+            this.Turn = 1;
             turnCount = this.grid.GetLength(0) * this.grid.GetLength(1);
 
             for (byte i = 0; i < this.grid.GetLength(0); i++)
@@ -43,7 +43,7 @@ namespace Practice
             }
         }
 
-        public void printGrid()
+        public void PrintGrid()
         {
             Console.WriteLine();
 
@@ -64,12 +64,12 @@ namespace Practice
             Console.WriteLine();
         }
 
-        public void makeMove(int[] pos, char symbol)
+        public void MakeMove(int[] pos, char symbol)
         {
             if (canMakeMove(pos))
             {
                 this.grid[pos[0] - 1, pos[1] - 1] = symbol;
-                this.turn++;
+                this.Turn++;
             }                
             else
                 Console.WriteLine("This cell is already occupied or position is out of bounds!");
@@ -85,7 +85,7 @@ namespace Practice
             return true;
         }
 
-        public static char getWinnerSymbol(char[,] grid)
+        public static char GetWinnerSymbol(char[,] grid)
         {         
             List<char> elements = new List<char>();
 
@@ -120,11 +120,9 @@ namespace Practice
             return Grid.empty;
         }  
 
-        public bool isLeftMoves ()
+        public bool IsLeftMoves ()
         {
-            return this.turn <= this.turnCount;
+            return this.Turn <= this.turnCount;
         }
-
-        public int getTurn() { return this.turn; }
     }
 }

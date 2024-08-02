@@ -3,19 +3,14 @@ using System.Collections.Generic;
 
 namespace Practice
 {
-    class Enemy : Player
+    public sealed class Enemy : Player
     {
         public Enemy(char symbol) : base(symbol)
         {
 
         }
 
-        public override int[] getPosition()
-        {
-            throw new ClosedMethodException("This method is not allowed in Enemys class");
-        }
-
-        public int[] getEnemyPosition(Grid currentGrid, char enemySymbol, char playerSymbol)
+        public int[] GetPosition(Grid currentGrid, char enemySymbol, char playerSymbol)
         {
             int[] getBestMove(char symbol)
             {
@@ -34,7 +29,7 @@ namespace Practice
 
                             testGrid[i, j] = symbol;
 
-                            if (Grid.getWinnerSymbol(testGrid) == symbol)
+                            if (Grid.GetWinnerSymbol(testGrid) == symbol)
                                 bestMove = currentMove;                            
 
                             testGrid[i, j] = Grid.empty;
