@@ -2,10 +2,10 @@ using System;
 
 namespace Practice
 {
-    public class HumanPlayer : Player
+    public class InputPlayer : Player
     {
 
-        public HumanPlayer(char symbol) : base(symbol)
+        public InputPlayer(char symbol) : base(symbol)
         {
 
         }
@@ -18,8 +18,8 @@ namespace Practice
             {
                 try
                 {
-                    position[0] = Convert.ToInt32(Console.ReadLine());
                     position[1] = Convert.ToInt32(Console.ReadLine());
+                    position[0] = Convert.ToInt32(Console.ReadLine());
 
                     break;
                 }

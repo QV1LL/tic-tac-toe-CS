@@ -3,9 +3,9 @@ using System.Collections.Generic;
 
 namespace Practice
 {
-    public sealed class Enemy : Player
+    public sealed class EnemyPlayer : Player
     {
-        public Enemy(char symbol) : base(symbol)
+        public EnemyPlayer(char symbol) : base(symbol)
         {
 
         }

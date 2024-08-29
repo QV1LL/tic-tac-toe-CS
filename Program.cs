@@ -7,16 +7,19 @@ namespace Practice
         static void Main(string[] args)
         {
             Grid grid = new Grid(); 
+            Random random = new Random();
 
-            HumanPlayer player = new HumanPlayer('X');
-            Enemy enemy = new Enemy('0');
+            int randomNumber = random.Next();
+
+            InputPlayer player = new InputPlayer((randomNumber % 2 == 1) ? 'X' : 'O');
+            EnemyPlayer enemy = new EnemyPlayer((player.Symbol == 'X') ? 'O' : 'X');
 
             char playerSymbol = player.Symbol;
             char enemySymbol = enemy.Symbol;
 
             while (Grid.GetWinnerSymbol(grid.grid) == Grid.empty && grid.IsLeftMoves())
             {                
-                if (grid.Turn % 2 == 1)
+                if (grid.Turn % 2 == randomNumber % 2)
                 {
                     grid.MakeMove(player.GetPosition(), playerSymbol);                
                     grid.PrintGrid();
