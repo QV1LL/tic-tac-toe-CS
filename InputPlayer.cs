@@ -2,7 +2,7 @@ using System;
 
 namespace Practice
 {
-    public class InputPlayer : Player
+    public sealed class InputPlayer : Player
     {
 
         public InputPlayer(char symbol) : base(symbol)
